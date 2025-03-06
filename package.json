@@ -19,7 +19,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "commander": "^11.0.0"
+    "commander": "^11.0.0",
+    "tsx": "^4.19.3"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
