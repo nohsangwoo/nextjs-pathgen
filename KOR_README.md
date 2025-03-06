@@ -8,15 +8,22 @@
 Manage your API routes effortlessly with Pathgen CLI
 ```
 
+# pathgen
+
+**[Korean](#korean) | [English](#english)**
+
+---
+
+## Korean
 
 ### pathgen 소개
 
-`pathgen`은 Next.js 개발자를 위해 설계된 CLI 도구로, `src/app/api` 디렉토리에서 API 라우트를 자동으로 생성하고 중앙에서 관리할 수 있게 해줍니다. 이를 통해 `apiRoutes.api.admin.products`와 같은 구조화된 방식으로 API 경로에 접근할 수 있습니다.
+`pathgen`은 Next.js 개발자를 위해 설계된 CLI 도구로, `src/app/api` 디렉토리 내의 기존 `route.ts` 파일을 기반으로 API 경로를 자동으로 탐색하고 구조화된 객체로 변환하여 타입 지원과 중앙 관리를 가능하게 합니다. 이를 통해 `apiRoutes.api.admin.products`와 같은 방식으로 API 경로에 접근할 수 있습니다.
 
 #### 주요 기능
-- Next.js API 디렉토리에서 API 라우트를 자동 생성
+- Next.js API 디렉토리 내 `route.ts` 파일을 기반으로 API 경로를 탐색 및 구조화
 - TypeScript 인터페이스와 라우트 객체를 생성하여 타입 안전성과 자동 완성 지원
-- 중첩된 라우트 지원 (예: `/api/admin/products` → `apiRoutes.api.admin.products`)
+- 중첩된 경로 지원 (예: `/api/admin/products` → `apiRoutes.api.admin.products`)
 - 가볍고 Next.js 프로젝트에 쉽게 통합 가능
 
 ### 설치
@@ -38,19 +45,19 @@ npm install --save-dev pathgen
 설치 후 `pathgen` 명령어를 통해 도구를 실행할 수 있으며, 입력 디렉토리와 출력 파일을 커스터마이징할 수 있는 옵션을 제공합니다.
 
 #### 기본 명령어
-기본 설정으로 API 라우트 생성:
+기본 설정으로 API 경로를 탐색 및 생성:
 ```bash
 pathgen
 ```
-- 기본 API 디렉토리: `./src/app/api`
+- 기본 API 디렉토리: `./src/app/`
 - 기본 출력 파일: `./src/lib/apiRoutes.ts`
 
 #### 사용자 지정 옵션
 커스텀 API 디렉토리나 출력 파일 지정:
 ```bash
-pathgen --dir ./custom/api --output ./custom/apiRoutes.ts
+pathgen --dir ./custom/app --output ./custom/apiRoutes.ts
 ```
-- `--dir`: 스캔할 API 디렉토리 경로 (기본: `./src/app/api`)
+- `--dir`: `route.ts` 파일을 탐색할 디렉토리 경로 (기본: `./src/app/`)
 - `--output`: 생성된 TypeScript 파일 경로 (기본: `./src/lib/apiRoutes.ts`)
 
 #### 예제
@@ -96,12 +103,12 @@ console.log(apiRoutes[""]);            // "/api"
 
 ### 요구 사항
 - Node.js (v14 이상)
-- `src/app/api` 디렉토리가 있는 Next.js 프로젝트 (또는 커스텀 API 디렉토리)
+- `route.ts` 파일이 포함된 Next.js 프로젝트 (기본적으로 `src/app/` 디렉토리 사용)
 
 ### 옵션
 | 옵션          | 설명                              | 기본값                 |
 |---------------|-----------------------------------|-----------------------|
-| `-d, --dir`   | 스캔할 API 디렉토리 경로         | `./src/app/api`       |
+| `-d, --dir`   | `route.ts` 파일을 탐색할 디렉토리 경로 | `./src/app/`          |
 | `-o, --output`| 생성된 라우트 파일 경로           | `./src/lib/apiRoutes.ts` |
 | `-v, --version`| 버전 번호 표시                  | -                     |
 | `-h, --help`   | 도움말 정보 표시                | -                     |
@@ -129,7 +136,7 @@ console.log(apiRoutes[""]);            // "/api"
 4. 로컬 테스트:
    ```bash
    npm link
-   pathgen --dir ./test/api --output ./test/output.ts
+   pathgen --dir ./test/app --output ./test/output.ts
    ```
 
 ### 라이선스
@@ -143,4 +150,5 @@ console.log(apiRoutes[""]);            // "/api"
 ### 연락처
 
 질문이나 지원이 필요하면 [milli@molluhub.com](mailto:milli@molluhub.com)으로 연락 주세요.
+
 
