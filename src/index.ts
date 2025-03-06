@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env tsx
 
 import * as fs from "fs";
 import * as path from "path";
@@ -17,13 +17,6 @@ function joinUrl(...parts: string[]): string {
 // API 경로를 탐색하고 객체로 변환하는 함수
 function generateApiRoutes(dir: string, baseRoute: string = ""): ApiRoute {
   const routes: ApiRoute = {};
-  
-  // 디렉토리가 존재하는지 확인
-  if (!fs.existsSync(dir)) {
-    console.error(`디렉토리가 존재하지 않습니다: ${dir}`);
-    return routes;
-  }
-  
   const entries = fs.readdirSync(dir, { withFileTypes: true });
 
   for (const entry of entries) {
@@ -43,6 +36,7 @@ function generateApiRoutes(dir: string, baseRoute: string = ""): ApiRoute {
       }
     }
   }
+
   return routes;
 }
 
@@ -60,19 +54,12 @@ function generateTypeScriptInterface(routes: ApiRoute, indent: string = ""): str
   return content;
 }
 
-// 메인 함수
-function generateRoutes(apiDir: string, outputFile: string) {
+// API 라우트 생성 및 파일 쓰기 함수
+function generateApiRoutesFile(apiDir: string, outputFile: string) {
   try {
-    console.log("API 경로 생성 중...");
-    console.log(`API 디렉토리: ${apiDir}`);
-    console.log(`출력 파일: ${outputFile}`);
-    
+    console.log("Generating API routes...");
+
     const apiRoutes = generateApiRoutes(apiDir);
-    
-    if (Object.keys(apiRoutes).length === 0) {
-      console.warn("경고: API 경로를 찾을 수 없습니다. 디렉토리 경로가 올바른지 확인하세요.");
-    }
-    
     const interfaceContent = `interface ApiRoutes ${generateTypeScriptInterface(apiRoutes)}`;
     const fileContent = `// Auto-generated API routes\n${interfaceContent}\n\nexport const apiRoutes: ApiRoutes = ${JSON.stringify(apiRoutes, null, 2).replace(/\\/g, "/")};`;
 
@@ -82,23 +69,24 @@ function generateRoutes(apiDir: string, outputFile: string) {
     }
 
     fs.writeFileSync(outputFile, fileContent, "utf-8");
-    console.log(`API 경로가 성공적으로 생성되었습니다: ${outputFile}`);
+    console.log(`API routes generated successfully at ${outputFile}`);
   } catch (error) {
-    console.error("API 경로 생성 중 오류 발생:", error);
+    console.error("Error generating API routes:", error);
     process.exit(1);
   }
 }
 
 // CLI 설정
 program
+  .name("api-routes-generator")
+  .description("CLI tool to generate API routes from Next.js API directory")
   .version("1.0.0")
-  .description("Next.js API 디렉토리에서 API 경로 생성")
-  .option("-d, --dir <path>", "API 디렉토리 경로", "./src/app/api")
-  .option("-o, --output <path>", "출력 파일 경로", "./src/lib/apiRoutes.ts")
+  .option("-d, --dir <path>", "API directory path", "src/app/api")
+  .option("-o, --output <path>", "Output file path", "src/lib/apiRoutes.ts")
   .action((options) => {
     const apiDir = path.resolve(process.cwd(), options.dir);
     const outputFile = path.resolve(process.cwd(), options.output);
-    generateRoutes(apiDir, outputFile);
+    generateApiRoutesFile(apiDir, outputFile);
   });
 
-program.parse(process.argv);
+program.parse();
