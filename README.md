@@ -8,52 +8,49 @@
 Manage your API routes effortlessly with Pathgen CLI
 ```
 
-### pathgen Overview
+## English
 
-`pathgen` is a CLI tool designed for Next.js developers to automatically explore and structure API routes based on existing `route.ts` files in the `src/app/` directory, enabling type support and centralized management. This allows structured access to API paths, such as `apiRoutes.api.admin.products`.
+### pathgen Overview
+`pathgen` is a CLI tool for Next.js developers that explores and structures API routes based on existing `route.ts` files in the `src/app/` directory, enabling type support and centralized management.
 
 #### Features
-- Explores and structures API routes based on `route.ts` files in the Next.js directory
-- Generates a TypeScript interface and route object for type safety and autocompletion
-- Supports nested routes (e.g., `/api/admin/products` becomes `apiRoutes.api.admin.products`)
-- Lightweight and easily integrates into any Next.js project
+- Explores and structures API routes from `route.ts` files
+- Generates TypeScript interfaces and route objects for type safety and autocompletion
+- Supports nested routes (e.g., `/api/admin/products` → `apiRoutes.api.admin.products`)
+- Lightweight and easy to integrate
 
 ### Installation
-
-You can install `pathgen` globally or as a dev dependency in your project.
-
 #### Global Installation
 ```bash
 npm install -g pathgen
 ```
 
-#### Local Installation (Recommended for Projects)
+#### Local Installation (Recommended)
 ```bash
 npm install --save-dev pathgen
 ```
 
 ### Usage
-
-Once installed, run the tool using the `pathgen` command. It supports options to customize the input directory and output file.
-
 #### Basic Command
-Explore and generate API routes with default settings:
 ```bash
-pathgen
+npx pathgen
 ```
 - Default directory: `./src/app/`
-- Default output file: `./src/lib/apiRoutes.ts`
+- Default output: `./src/lib/apiRoutes.ts`
 
 #### Custom Options
-Specify a custom directory or output file:
 ```bash
-pathgen --dir ./custom/app --output ./custom/apiRoutes.ts
+npx pathgen --dir ./custom/app --output ./custom/apiRoutes.ts
 ```
-- `--dir`: Directory path to explore for `route.ts` files (default: `./src/app/`)
-- `--output`: Path to the generated TypeScript file (default: `./src/lib/apiRoutes.ts`)
+- `--dir`: Directory to explore for `route.ts` files (default: `./src/app/`)
+- `--output`: Generated TypeScript file path (default: `./src/lib/apiRoutes.ts`)
+
+#### Execution Notes
+- **Local Install**: Use `npx pathgen` or add `"pathgen": "pathgen"` to `package.json` scripts and run `npm run pathgen`.
+- **Global Install**: Use `pathgen` directly.
+- Note: With local install, `pathgen` alone won’t work; use `npx`.
 
 #### Example
-Suppose your Next.js project has the following structure:
 ```
 src/app/api/
 ├── admin/
@@ -63,83 +60,30 @@ src/app/api/
 │   └── route.ts
 └── route.ts
 ```
-
-Running `pathgen` will generate a file like this:
+After `npx pathgen`:
 ```typescript
 // src/lib/apiRoutes.ts
 interface ApiRoutes {
-  admin: {
-    products: string;
-  };
+  admin: { products: string; };
   users: string;
   "": string;
 }
-
 export const apiRoutes: ApiRoutes = {
-  admin: {
-    products: "/api/admin/products"
-  },
+  admin: { products: "/api/admin/products" },
   users: "/api/users",
   "": "/api"
 };
 ```
 
-Now you can use it in your code:
-```typescript
-import { apiRoutes } from "@/lib/apiRoutes";
-
-console.log(apiRoutes.admin.products); // "/api/admin/products"
-console.log(apiRoutes.users);          // "/api/users"
-console.log(apiRoutes[""]);            // "/api"
-```
-
 ### Prerequisites
 - Node.js (v14 or higher)
-- A Next.js project with `route.ts` files (default directory: `src/app/`)
+- Next.js project with `route.ts` files
 
 ### Options
 | Option         | Description                              | Default Value         |
 |----------------|------------------------------------------|-----------------------|
-| `-d, --dir`    | Directory path to explore for `route.ts` files | `./src/app/`          |
-| `-o, --output` | Path to the generated routes file        | `./src/lib/apiRoutes.ts` |
-| `-v, --version`| Show the version number                 | -                     |
+| `-d, --dir`    | Directory to explore for `route.ts` files | `./src/app/`          |
+| `-o, --output` | Path to generated routes file            | `./src/lib/apiRoutes.ts` |
+| `-v, --version`| Show version number                     | -                     |
 | `-h, --help`   | Display help information                | -                     |
-
-### Development
-
-To contribute or modify the tool:
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/nohsangwoo/nextjs-pathgen
-   cd nextjs-pathgen
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Build the project:
-   ```bash
-   npm run build
-   ```
-
-4. Test locally:
-   ```bash
-   npm link
-   pathgen --dir ./test/app --output ./test/output.ts
-   ```
-
-### License
-
-This project is licensed under the [MIT License](LICENSE).
-
-### Contributing
-
-Contributions are welcome! Please submit a pull request or open an issue on the [GitHub repository](https://github.com/nohsangwoo/nextjs-pathgen).
-
-### Contact
-
-For questions or support, reach out to [milli@molluhub.com](mailto:milli@molluhub.com).
 
