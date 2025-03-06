@@ -1,6 +1,6 @@
 {
   "name": "pathgen",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Generate API routes from Next.js api directory",
   "main": "dist/index.js",
   "bin": {
