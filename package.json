@@ -1,36 +1,31 @@
 {
-  "name": "pathgen",
-  "version": "1.0.1",
-  "description": "A CLI tool to generate and centrally manage API routes from Next.js api directory, enabling structured access like `apiRoutes.api.admin.products`.",
+  "name": "api-routes-generator",
+  "version": "1.0.0",
+  "description": "Generate API routes from Next.js api directory",
   "main": "dist/index.js",
-  "type": "commonjs",
-  "scripts": {
-    "build": "rimraf dist && swc src -d dist --copy-files",
-    "prepare": "npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "bin": {
     "pathgen": "./dist/index.js"
   },
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
   "keywords": [
-    "cli",
     "nextjs",
     "api",
     "routes",
-    "generator",
-    "typescript",
-    "nodejs"
+    "generator"
   ],
-  "author": "LUDGI",
+  "author": "",
   "license": "MIT",
   "dependencies": {
-    "@swc/cli": "^0.6.0",
-    "@swc/core": "^1.11.7",
-    "commander": "^13.1.0",
-    "rimraf": "^6.0.1"
+    "commander": "^11.0.0"
   },
   "devDependencies": {
-    "@types/node": "^22.13.9",
-    "typescript": "^5.8.2"
-  }
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "files": [
+    "dist"
+  ]
 }
