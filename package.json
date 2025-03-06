@@ -1,6 +1,6 @@
 {
   "name": "api-routes-generator",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Generate API routes from Next.js api directory",
   "main": "dist/index.js",
   "bin": {
