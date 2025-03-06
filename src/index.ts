@@ -78,10 +78,10 @@ function generateApiRoutesFile(apiDir: string, outputFile: string) {
 
 // CLI 설정
 program
-  .name("api-routes-generator")
+  .name("pathgen")
   .description("CLI tool to generate API routes from Next.js API directory")
   .version("1.0.0")
-  .option("-d, --dir <path>", "API directory path", "src/app/api")
+  .option("-d, --dir <path>", "API directory path", "src/app/")
   .option("-o, --output <path>", "Output file path", "src/lib/apiRoutes.ts")
   .action((options) => {
     const apiDir = path.resolve(process.cwd(), options.dir);
