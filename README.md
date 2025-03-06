@@ -10,13 +10,13 @@ Manage your API routes effortlessly with Pathgen CLI
 
 ---
 
-# api-routes-generator
+# pathgen
 
 A CLI tool to generate and centrally manage API routes from your Next.js `src/app/api` directory, enabling structured access like `apiRoutes.api.admin.products`.
 
 ## Overview
 
-`api-routes-generator` is a command-line tool designed for Next.js developers who want to automate the creation and management of API routes. It scans your `src/app/api` directory, generates a TypeScript file with a structured route object, and provides an easy way to access your API endpoints in a centralized manner.
+`pathgen` is a command-line tool designed for Next.js developers who want to automate the creation and management of API routes. It scans your `src/app/api` directory, generates a TypeScript file with a structured route object, and provides an easy way to access your API endpoints in a centralized manner.
 
 ### Features
 - Automatically generates API routes from your Next.js API directory.
@@ -26,26 +26,26 @@ A CLI tool to generate and centrally manage API routes from your Next.js `src/ap
 
 ## Installation
 
-You can install `api-routes-generator` globally or as a dev dependency in your project.
+You can install `pathgen` globally or as a dev dependency in your project.
 
 ### Global Installation
 ```bash
-npm install -g api-routes-generator
+npm install -g pathgen
 ```
 
 ### Local Installation (Recommended for Projects)
 ```bash
-npm install --save-dev api-routes-generator
+npm install --save-dev pathgen
 ```
 
 ## Usage
 
-Once installed, you can run the tool via the `api-routes-gen` command. It accepts options to customize the input directory and output file.
+Once installed, you can run the tool via the `pathgen` command. It accepts options to customize the input directory and output file.
 
 ### Basic Command
 Generate API routes with default settings:
 ```bash
-api-routes-gen
+pathgen
 ```
 - Default API directory: `./src/app/api`
 - Default output file: `./src/lib/apiRoutes.ts`
@@ -53,7 +53,7 @@ api-routes-gen
 ### Custom Options
 Specify a custom API directory or output file:
 ```bash
-api-routes-gen --dir ./custom/api --output ./custom/apiRoutes.ts
+pathgen --dir ./custom/api --output ./custom/apiRoutes.ts
 ```
 - `--dir`: Path to your Next.js API directory (default: `./src/app/api`).
 - `--output`: Path to the generated TypeScript file (default: `./src/lib/apiRoutes.ts`).
@@ -70,7 +70,7 @@ src/app/api/
 └── route.ts
 ```
 
-Running `api-routes-gen` will generate a file like this:
+Running `pathgen` will generate a file like this:
 ```typescript
 // src/lib/apiRoutes.ts
 interface ApiRoutes {
@@ -117,8 +117,8 @@ To contribute or modify the tool:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/api-routes-generator.git
-   cd api-routes-generator
+   git clone https://github.com/nohsangwoo/nextjs-pathgen
+   cd nextjs-pathgen
    ```
 
 2. Install dependencies:
@@ -134,7 +134,7 @@ To contribute or modify the tool:
 4. Test locally:
    ```bash
    npm link
-   api-routes-gen --dir ./test/api --output ./test/output.ts
+   pathgen --dir ./test/api --output ./test/output.ts
    ```
 
 ## License
@@ -167,7 +167,7 @@ SOFTWARE.
 
 ## Contributing
 
-Contributions are welcome! Please submit a pull request or open an issue on the [GitHub repository](https://github.com/your-username/api-routes-generator).
+Contributions are welcome! Please submit a pull request or open an issue on the [GitHub repository](https://github.com/your-username/pathgen).
 
 ## Contact
 
