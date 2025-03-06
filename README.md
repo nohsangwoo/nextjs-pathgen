@@ -8,41 +8,39 @@
 Manage your API routes effortlessly with Pathgen CLI
 ```
 
----
 
-# pathgen
 
-A CLI tool to generate and centrally manage API routes from your Next.js `src/app/api` directory, enabling structured access like `apiRoutes.api.admin.products`.
+## English
 
-## Overview
+### pathgen Overview
 
-`pathgen` is a command-line tool designed for Next.js developers who want to automate the creation and management of API routes. It scans your `src/app/api` directory, generates a TypeScript file with a structured route object, and provides an easy way to access your API endpoints in a centralized manner.
+`pathgen` is a CLI tool designed for Next.js developers to automate the generation and central management of API routes from the `src/app/api` directory, enabling structured access like `apiRoutes.api.admin.products`.
 
-### Features
+#### Features
 - Automatically generates API routes from your Next.js API directory.
 - Creates a TypeScript interface and route object for type safety and autocompletion.
 - Supports nested routes (e.g., `/api/admin/products` becomes `apiRoutes.api.admin.products`).
 - Lightweight and easy to integrate into any Next.js project.
 
-## Installation
+### Installation
 
 You can install `pathgen` globally or as a dev dependency in your project.
 
-### Global Installation
+#### Global Installation
 ```bash
 npm install -g pathgen
 ```
 
-### Local Installation (Recommended for Projects)
+#### Local Installation (Recommended for Projects)
 ```bash
 npm install --save-dev pathgen
 ```
 
-## Usage
+### Usage
 
-Once installed, you can run the tool via the `pathgen` command. It accepts options to customize the input directory and output file.
+Once installed, run the tool using the `pathgen` command. It supports options to customize the input directory and output file.
 
-### Basic Command
+#### Basic Command
 Generate API routes with default settings:
 ```bash
 pathgen
@@ -50,7 +48,7 @@ pathgen
 - Default API directory: `./src/app/api`
 - Default output file: `./src/lib/apiRoutes.ts`
 
-### Custom Options
+#### Custom Options
 Specify a custom API directory or output file:
 ```bash
 pathgen --dir ./custom/api --output ./custom/apiRoutes.ts
@@ -58,7 +56,7 @@ pathgen --dir ./custom/api --output ./custom/apiRoutes.ts
 - `--dir`: Path to your Next.js API directory (default: `./src/app/api`).
 - `--output`: Path to the generated TypeScript file (default: `./src/lib/apiRoutes.ts`).
 
-### Example
+#### Example
 Suppose your Next.js project has the following API structure:
 ```
 src/app/api/
@@ -99,19 +97,19 @@ console.log(apiRoutes.users);          // "/api/users"
 console.log(apiRoutes[""]);            // "/api"
 ```
 
-## Prerequisites
+### Prerequisites
 - Node.js (v14 or higher)
 - A Next.js project with an `src/app/api` directory (or a custom API directory)
 
-## Options
-| Option       | Description                              | Default Value         |
-|--------------|------------------------------------------|-----------------------|
-| `-d, --dir`  | Path to the API directory to scan       | `./src/app/api`       |
-| `-o, --output` | Path to the generated routes file      | `./src/lib/apiRoutes.ts` |
-| `-v, --version` | Show the version number               | -                     |
-| `-h, --help`    | Display help information              | -                     |
+### Options
+| Option         | Description                              | Default Value         |
+|----------------|------------------------------------------|-----------------------|
+| `-d, --dir`    | Path to the API directory to scan       | `./src/app/api`       |
+| `-o, --output` | Path to the generated routes file       | `./src/lib/apiRoutes.ts` |
+| `-v, --version`| Show the version number                 | -                     |
+| `-h, --help`   | Display help information                | -                     |
 
-## Development
+### Development
 
 To contribute or modify the tool:
 
@@ -137,42 +135,15 @@ To contribute or modify the tool:
    pathgen --dir ./test/api --output ./test/output.ts
    ```
 
-## License
+### License
 
 This project is licensed under the [MIT License](LICENSE).
 
-```
-MIT License
+### Contributing
 
-Copyright (c) 2025 LUDGI
+Contributions are welcome! Please submit a pull request or open an issue on the [GitHub repository](https://github.com/nohsangwoo/nextjs-pathgen).
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
-
-## Contributing
-
-Contributions are welcome! Please submit a pull request or open an issue on the [GitHub repository](https://github.com/your-username/pathgen).
-
-## Contact
+### Contact
 
 For questions or support, reach out to [milli@molluhub.com](mailto:milli@molluhub.com).
 
----
-
-# nextjs-pathgen
