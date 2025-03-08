@@ -27,7 +27,21 @@ function generateApiRoutes(dir: string, baseRoute: string = ""): ApiRoute {
       const routeFile = path.join(fullPath, "route.ts");
       if (fs.existsSync(routeFile)) {
         const routeKey = entry.name;
-        routes[routeKey] = joinUrl("/api", relativePath);
+        
+        // API 경로 생성 - api가 중복되지 않도록 처리
+        let apiPath = '/';
+        
+        // 상대 경로에서 api가 포함된 경우 그 이후의 경로만 사용
+        if (relativePath.includes('api/')) {
+          const parts = relativePath.split('api/');
+          apiPath += 'api/' + parts[parts.length - 1];
+        } else {
+          // api가 없는 경우 전체 상대 경로 사용
+          apiPath += relativePath;
+        }
+        
+        // 중복 슬래시 제거
+        routes[routeKey] = apiPath.replace(/\/+/g, '/');
       } else {
         const subRoutes = generateApiRoutes(fullPath, relativePath);
         if (Object.keys(subRoutes).length > 0) {
@@ -81,7 +95,7 @@ program
   .name("pathgen")
   .description("CLI tool to generate API routes from Next.js API directory")
   .version("1.0.0")
-  .option("-d, --dir <path>", "API directory path", "src/app/")
+  .option("-d, --dir <path>", "API directory path", "src/app")
   .option("-o, --output <path>", "Output file path", "src/lib/apiRoutes.ts")
   .action((options) => {
     const apiDir = path.resolve(process.cwd(), options.dir);
