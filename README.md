@@ -8,15 +8,19 @@
 Manage your API routes effortlessly with Pathgen CLI
 ```
 
+좋아, 사용자가 제공한 기존 README 파일을 새로운 CLI 도구의 변경 사항에 맞춰서 업데이트해줄게. 새로운 CLI 도구는 `src/app/api` 디렉토리에서 `route.ts` 파일을 탐색하고, API 경로를 구조화하여 TypeScript 인터페이스로 생성하는 기능을 제공해. 아래는 기존 README를 기반으로 수정한 내용이야. 변경된 부분은 새로운 기능에 맞춰 조정했으니 확인해봐!
+
+---
+
 ## English
 
 ### pathgen Overview
-`pathgen` is a CLI tool for Next.js developers that explores and structures API routes based on existing `route.ts` files in the `src/app/` directory, enabling type support and centralized management.
+`pathgen` is a CLI tool for Next.js developers that explores and structures API routes based on existing `route.ts` files in the `src/app/api/` directory, enabling type support and centralized management.
 
 #### Features
-- Explores and structures API routes from `route.ts` files
+- Explores and structures API routes from `route.ts` files in `src/app/api/`
 - Generates TypeScript interfaces and route objects for type safety and autocompletion
-- Supports nested routes (e.g., `/api/admin/products` → `apiRoutes.api.admin.products`)
+- Supports nested routes (e.g., `/api/admin/products` → `apiRoutes.routes.admin.routes.products.path`)
 - Lightweight and easy to integrate
 
 ### Installation
@@ -35,14 +39,14 @@ npm install --save-dev pathgen
 ```bash
 npx pathgen
 ```
-- Default directory: `./src/app/`
+- Default directory: `./src/app/api/`
 - Default output: `./src/lib/apiRoutes.ts`
 
 #### Custom Options
 ```bash
-npx pathgen --dir ./custom/app --output ./custom/apiRoutes.ts
+npx pathgen --dir ./custom/app/api --output ./custom/apiRoutes.ts
 ```
-- `--dir`: Directory to explore for `route.ts` files (default: `./src/app/`)
+- `--dir`: Directory to explore for `route.ts` files (default: `./src/app/api/`)
 - `--output`: Generated TypeScript file path (default: `./src/lib/apiRoutes.ts`)
 
 #### Execution Notes
@@ -64,25 +68,49 @@ After `npx pathgen`:
 ```typescript
 // src/lib/apiRoutes.ts
 interface ApiRoutes {
-  admin: { products: string; };
-  users: string;
-  "": string;
+  routes: {
+    admin: {
+      routes: {
+        products: {
+          path: string;
+        };
+      };
+    };
+    users: {
+      path: string;
+    };
+    "": {
+      path: string;
+    };
+  };
 }
 export const apiRoutes: ApiRoutes = {
-  admin: { products: "/api/admin/products" },
-  users: "/api/users",
-  "": "/api"
+  "routes": {
+    "admin": {
+      "routes": {
+        "products": {
+          "path": "/api/admin/products"
+        }
+      }
+    },
+    "users": {
+      "path": "/api/users"
+    },
+    "": {
+      "path": "/api"
+    }
+  }
 };
 ```
 
 ### Prerequisites
 - Node.js (v14 or higher)
-- Next.js project with `route.ts` files
+- Next.js project with `route.ts` files in `src/app/api/`
 
 ### Options
 | Option         | Description                              | Default Value         |
 |----------------|------------------------------------------|-----------------------|
-| `-d, --dir`    | Directory to explore for `route.ts` files | `./src/app/`          |
+| `-d, --dir`    | Directory to explore for `route.ts` files | `./src/app/api/`      |
 | `-o, --output` | Path to generated routes file            | `./src/lib/apiRoutes.ts` |
 | `-v, --version`| Show version number                     | -                     |
 | `-h, --help`   | Display help information                | -                     |
