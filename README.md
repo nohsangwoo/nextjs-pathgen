@@ -8,10 +8,6 @@
 Manage your API routes effortlessly with Pathgen CLI
 ```
 
-좋아, 사용자가 제공한 기존 README 파일을 새로운 CLI 도구의 변경 사항에 맞춰서 업데이트해줄게. 새로운 CLI 도구는 `src/app/api` 디렉토리에서 `route.ts` 파일을 탐색하고, API 경로를 구조화하여 TypeScript 인터페이스로 생성하는 기능을 제공해. 아래는 기존 README를 기반으로 수정한 내용이야. 변경된 부분은 새로운 기능에 맞춰 조정했으니 확인해봐!
-
----
-
 ## English
 
 ### pathgen Overview

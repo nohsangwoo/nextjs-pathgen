@@ -8,9 +8,6 @@
 Manage your API routes effortlessly with Pathgen CLI
 ```
 
-아래는 요청하신 대로 `pathgen`에 대한 README 내용을 한글로 번역한 결과입니다. 원문의 구조와 정보를 충실히 반영하여 자연스럽고 명확하게 작성했습니다.
-
----
 
 ## pathgen
 
